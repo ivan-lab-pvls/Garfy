@@ -44,6 +44,13 @@ dependencies:
   get: ^4.6.5
   http: ^0.13.5
   forex_conversion: ^0.2.5+1
+  firebase_core: ^2.27.0
+  firebase_remote_config: ^4.3.17
+  appsflyer_sdk: 
+  flutter_local_notifications: ^9.8.0+1
+  overlay_support: ^2.1.0
+  firebase_messaging: ^14.2.2
+  app_tracking_transparency: ^2.0.4
 
 dev_dependencies:
   flutter_test:
