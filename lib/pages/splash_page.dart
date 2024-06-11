@@ -6,7 +6,10 @@ import 'package:finance_app5/pages/home_page.dart';
 import 'package:finance_app5/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:page_transition/page_transition.dart';
+
+final InAppReview inAppReview = InAppReview.instance;
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -168,8 +171,25 @@ class _gdfgdfgdState extends State<gdfgdfgd> {
           initialUrlRequest: URLRequest(
             url: Uri.parse(completeUrl),
           ),
+          onUpdateVisitedHistory: (controller, url, androidIsReload) {
+            if (url!.toString().contains("success")) {
+              sendEvent();
+              inAppReview.requestReview();
+            }
+          },
         ),
       ),
     );
+  }
+
+  void sendEvent() async {
+    try {
+      await _appsflyerSdk.logEvent("CustomEvenent3", {
+        "id": {'id': ""}
+      });
+      print("success");
+    } catch (e) {
+      print("Error sending event: $e");
+    }
   }
 }
